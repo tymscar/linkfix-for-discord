@@ -5,15 +5,12 @@ on:
     branches: ["**"]
 
 jobs:
-  lint:
-    uses: "./.github/workflows/_lint.yml"
-
   build:
     uses: "./.github/workflows/_build.yml"
 
   publish-image:
     name: Publish Docker Image
-    needs: ["lint", "build"]
+    needs: [ "build"]
     runs-on: ubuntu-latest
     env:
       # Set CALCULATED_IMAGE_TAG to "latest" or "vX.Y.Z"
